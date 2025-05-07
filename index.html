@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ｅｍａ　エマ</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px; /* Add some padding around the content */
+            font-family: 'Arial', sans-serif;
+            color: #ffffff; /* White text color for readability */
+            background: url('https://raw.githubusercontent.com/IntellexaAI/intellexaai.github.io/refs/heads/main/e44f0a25562bb16a324622981db7d756.gif') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column; /* Stack containers vertically */
+            justify-content: center; /* Keep centered vertically in the viewport if content is short */
+            align-items: center;
+            min-height: 100vh; /* Ensure body is at least viewport height */
+            overflow-y: auto; /* Allow vertical scrolling */
+            box-sizing: border-box; /* Include padding in element's total width and height */
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black background for content */
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            max-width: 90%; /* Make container responsive */
+            width: 500px; /* Max width for the container */
+            margin-bottom: 20px; /* Add space below the description container */
+            display: flex; /* Use flexbox for inner alignment */
+            flex-direction: column; /* Stack items inside vertically */
+            align-items: center; /* Center items horizontally */
+        }
+
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%; /* Make the image circular */
+            border: 4px solid #ffffff; /* White border around the profile pic */
+            object-fit: cover; /* Ensure the image covers the area without distortion */
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #FF0000; /* Bright Red for the name */
+            margin-bottom: 10px;
+            font-size: 2.5em; /* Slightly larger font size for the name */
+            text-shadow: 0 0 10px #FF0000, 0 0 20px #FF0000, 0 0 30px #FF0000, 0 0 40px #FF0000; /* Neon Red Glow */
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.7; /* Increased line height for better spacing */
+            margin-top: 0; /* Remove default top margin */
+            margin-bottom: 20px; /* Add space below paragraphs */
+            padding: 0 15px; /* Add some horizontal padding within the text block */
+            text-shadow: 0 0 2px rgba(255, 255, 255, 0.5); /* Very lowkey white glow */
+            max-width: 450px; /* Optional: Give the paragraph a max-width relative to container */
+            width: 100%; /* Ensure it takes available width up to max-width */
+            box-sizing: border-box; /* Include padding in width */
+        }
+
+        .button-container {
+             text-align: center; /* Center the button within its container */
+             max-width: 90%; /* Make container responsive */
+             width: 500px; /* Match width of the description container */
+             margin-bottom: 20px; /* Add space below the button container */
+        }
+
+        .insta-button {
+            display: inline-flex; /* Use flexbox to align icon and text */
+            align-items: center; /* Vertically center icon and text */
+            background: rgba(225, 48, 108, 0.7);
+            background: linear-gradient(to bottom, rgba(225, 48, 108, 0.8), rgba(193, 53, 132, 0.7));
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            transition: background 0.3s ease, transform 0.1s ease;
+            cursor: pointer; /* Add pointer cursor */
+        }
+
+        .insta-button img {
+            width: 1.2em; /* Size the icon relative to the font size */
+            height: 1.2em;
+            margin-right: 10px; /* Space between icon and text */
+            vertical-align: middle; /* Align icon vertically */
+        }
+
+
+        .insta-button:hover {
+            background: rgba(193, 53, 132, 0.8);
+            background: linear-gradient(to bottom, rgba(193, 53, 132, 0.9), rgba(225, 48, 108, 0.8));
+        }
+
+         .insta-button:active {
+             transform: scale(0.98);
+             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+         }
+
+        .music-player {
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent dark background */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+            align-items: center;
+            gap: 15px; /* Space between items */
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            /* Removed flex-wrap: wrap; to keep buttons horizontal */
+            /* flex-wrap: wrap; */
+            margin-top: 30px; /* Add some space above the player */
+            max-width: 90%; /* Keep player responsive like other containers */
+            width: 500px; /* Match width */
+            border-radius: 10px; /* Add border-radius to match containers */
+        }
+
+         /* Styling for the music control buttons */
+        .music-player button {
+            display: inline-flex; /* Use flexbox for layout */
+            align-items: center;
+            /* Styling similar to insta-button */
+            background: rgba(225, 48, 108, 0.7);
+            background: linear-gradient(to bottom, rgba(225, 48, 108, 0.8), rgba(193, 53, 132, 0.7));
+            color: white;
+            border: none;
+            padding: 8px 15px; /* Adjusted padding for smaller buttons */
+            border-radius: 5px; /* Adjusted border-radius */
+            cursor: pointer;
+            font-size: 1em; /* Adjusted font size */
+            font-weight: bold; /* Keep bold font weight */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4); /* Adjusted shadow */
+            transition: background 0.3s ease, transform 0.1s ease;
+            /* Prevent buttons from shrinking */
+            flex-shrink: 0;
+        }
+
+        .music-player button:hover {
+             background: rgba(193, 53, 132, 0.8);
+            background: linear-gradient(to bottom, rgba(193, 53, 132, 0.9), rgba(225, 48, 108, 0.8));
+        }
+
+         .music-player button:active {
+             transform: scale(0.95); /* Slightly smaller active scale */
+              box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+         }
+
+        .song-info {
+            flex-grow: 1; /* Allow song info to take available space */
+            text-align: center; /* Center song title */
+            font-size: 1em;
+            padding: 0 10px; /* Add padding */
+            /* Allow song info to shrink if necessary */
+            flex-shrink: 1;
+            min-width: 0; /* Allow text to shrink below its content size */
+        }
+
+        /* Hide the default audio element */
+        #background-audio {
+            display: none;
+        }
+
+
+        /* Basic responsiveness */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .container, .button-container, .music-player {
+                padding: 20px;
+                width: 95%;
+            }
+             p {
+                font-size: 1em;
+                line-height: 1.6;
+                padding: 0 10px;
+                 text-shadow: 0 0 1px rgba(255, 255, 255, 0.4);
+            }
+            h1 {
+                font-size: 2em;
+                 text-shadow: 0 0 8px #FF0000, 0 0 15px #FF0000, 0 0 25px #FF0000;
+            }
+
+            .insta-button {
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+             .insta-button img {
+                width: 1em;
+                height: 1em;
+                margin-right: 8px;
+            }
+             /* Removed vertical stacking for player on small screens */
+             /* .music-player {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px;
+             } */
+              .music-player button {
+                padding: 8px 10px;
+             }
+             /* .song-info {
+                width: 100%;
+             } */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://raw.githubusercontent.com/IntellexaAI/intellexaai.github.io/refs/heads/main/582bbfa5410f422c60a146991474be55.gif" alt="Ema's Profile Picture" class="profile-pic">
+        <h1>Ｅｍａ　エマ</h1>
+        <p>Welcome to my page!<br>I'm Ema, a beginner developer who loves creating Roblox games and designing clothes on Roblox.<br>Feel free to message me if you have any questions or want to collaborate!<br>You can find my Roblox group linked in my profile.<br>Interested in ordering a custom Roblox banner or checking out my clothing designs? Just send me a message to learn more!</p>
+    </div>
+
+    <div class="button-container">
+        <a href="https://www.instagram.com/soliddema?igsh=MWZyNGg5djM0bDMxeQ==" class="insta-button" target="_blank">
+             <img src="https://raw.githubusercontent.com/uzikillaz/IconsForKiroUI/refs/heads/main/instagram.1024x1024.png" alt="Instagram Icon">
+             Contact me on Instagram!
+        </a>
+    </div>
+
+    <div class="music-player">
+        <audio id="background-audio"></audio>
+        <button id="play-pause-button" class="music-button">Play</button>
+        <button id="prev-button" class="music-button">Prev</button>
+        <button id="next-button" class="music-button">Next</button>
+        <div class="song-info" id="current-song-title"></div>
+    </div>
+
+    <script>
+        const audio = document.getElementById('background-audio');
+        const playPauseButton = document.getElementById('play-pause-button');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const songTitleElement = document.getElementById('current-song-title');
+
+        const playlist = [
+            { title: 'DJ Anemia - crier', src: 'https://raw.githubusercontent.com/IntellexaAI/intellexaai.github.io/main/DJ%20Anemia_%20crier_%20sixnite%20_%20archangel%20(Slowed)%20(Official%20Visualizer)(MP3_128K).mp3' },
+            { title: 'niteboy - u.', src: 'https://raw.githubusercontent.com/IntellexaAI/intellexaai.github.io/main/niteboi%20-%20u.%20(Lyrics)(MP3_128K).mp3' },
+            { title: 'líue - Suffer With Me', src: 'https://raw.githubusercontent.com/IntellexaAI/intellexaai.github.io/main/l%C3%ADue%20-%20Suffer%20With%20Me%20%5BOFFICIAL%20AUDIO%20w_Visuals%5D(MP3_128K).mp3' }
+        ];
+
+        // Find the index of "líue - Suffer With Me" to start with
+        let currentSongIndex = playlist.findIndex(song => song.title === 'líue - Suffer With Me');
+        // If not found, default to the first song
+        if (currentSongIndex === -1) {
+            currentSongIndex = 0;
+        }
+
+        let isPlaying = false;
+
+        // Function to load and play a song
+        function playSong(index) {
+            if (index >= 0 && index < playlist.length) {
+                currentSongIndex = index;
+                audio.src = playlist[currentSongIndex].src;
+                audio.load(); // Load the new audio source
+
+                const playPromise = audio.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Autoplay started successfully
+                        isPlaying = true;
+                        playPauseButton.textContent = 'Pause';
+                        updateSongInfo();
+                    }).catch(error => {
+                        // Autoplay was prevented.
+                        console.error("Autoplay prevented:", error);
+                        isPlaying = false;
+                        playPauseButton.textContent = 'Play';
+                        updateSongInfo(); // Still update info even if play failed
+                         // No alert message shown here
+                    });
+                } else {
+                     // Fallback for older browsers that don't return a Promise
+                     isPlaying = true;
+                     playPauseButton.textContent = 'Pause';
+                     updateSongInfo();
+                }
+            }
+        }
+
+        // Function to pause the current song
+        function pauseSong() {
+            audio.pause();
+            isPlaying = false;
+            playPauseButton.textContent = 'Play';
+        }
+
+        // Function to toggle play/pause
+        function togglePlayPause() {
+            if (isPlaying) {
+                pauseSong();
+            } else {
+                 // If music hasn't started yet, start from the current index
+                playSong(currentSongIndex);
+            }
+        }
+
+        // Function to play the next song
+        function nextSong() {
+            currentSongIndex = (currentSongIndex + 1) % playlist.length; // Loop back to the start
+            playSong(currentSongIndex);
+        }
+
+        // Function to play the previous song
+        function prevSong() {
+            currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length; // Loop back to the end
+            playSong(currentSongIndex);
+        }
+
+        // Function to update the displayed song title
+        function updateSongInfo() {
+            songTitleElement.textContent = `Now Playing: ${playlist[currentSongIndex].title}`;
+        }
+
+        // Event listeners
+        playPauseButton.addEventListener('click', togglePlayPause);
+        nextButton.addEventListener('click', nextSong);
+        prevButton.addEventListener('click', prevSong);
+
+        // When a song ends, play the next one
+        audio.addEventListener('ended', nextSong);
+
+        // Initial setup: Load the first song info and ATTEMPT to play it
+        updateSongInfo();
+        // *** ATTEMPTING AUTOPLAY ***
+        // Note: Modern browsers often block autoplay unless the user has interacted with the page.
+        // If the music doesn't start automatically, the user will need to scroll down and click the "Play" button in the music player.
+        playSong(currentSongIndex);
+
+    </script>
+</body>
+</html>
