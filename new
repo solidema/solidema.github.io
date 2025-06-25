@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to My Page!</title>
+    <!-- Tailwind CSS CDN for easy styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom CSS to ensure GIF background covers the entire page and is centered */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #1a202c; /* Fallback background color */
+            background-image: url('https://i.gifer.com/1j6F.gif'); /* Updated GIF URL */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden; /* Prevent scrollbars if content is larger than viewport */
+            color: #047857; /* Changed: Dark green text color for body/fallback */
+            position: relative; /* Needed for overlay */
+        }
+
+        /* Overlay for better text readability on busy GIFs */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+            z-index: 1;
+        }
+
+        .container {
+            position: relative; /* Bring container above the overlay */
+            z-index: 2;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.9); /* Black, slightly more opaque */
+            padding: 2rem;
+            border-radius: 1.5rem; /* More rounded corners */
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+            max-width: 90%;
+            width: 400px; /* Container width */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Light border */
+        }
+
+        .social-link {
+            display: inline-block;
+            margin: 0.75rem; /* Increased margin for better spacing */
+            transition: transform 0.3s ease, color 0.3s ease;
+            font-size: 2.5rem; /* Larger icons */
+            color: #047857; /* Changed: Dark green for social icons */
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1); /* Lift and slightly enlarge on hover */
+            color: #63b3ed; /* Blue on hover */
+        }
+
+        .social-link img {
+            width: 48px; /* Standard icon size */
+            height: 48px;
+            border-radius: 0.75rem; /* Rounded corners for images too */
+            transition: transform 0.3s ease;
+        }
+
+        .social-link img:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            font-size: 2.5rem; /* Larger heading */
+            margin-bottom: 1rem;
+            color: #047857; /* Changed: Dark green for h1 */
+            font-weight: 700; /* Bold */
+            letter-spacing: 0.05em; /* Slightly spaced letters */
+        }
+
+        p {
+            font-size: 1.125rem; /* Readable paragraph text */
+            margin-bottom: 2rem;
+            color: #047857; /* Changed: Dark green for paragraphs */
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 2rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+            .social-link {
+                margin: 0.5rem;
+                font-size: 2rem;
+            }
+            .social-link img {
+                width: 40px;
+                height: 40px;
+            }
+            .container {
+                padding: 1.5rem;
+                width: 90%; /* Ensure it's still responsive on small screens */
+            }
+        }
+
+        .llm-button {
+            background-color: #4A90E2; /* Blue */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: inline-flex; /* For icon alignment */
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .llm-button:hover {
+            background-color: #357ABD; /* Darker blue */
+            transform: translateY(-2px);
+        }
+
+        .llm-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #fff;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Profile picture styling */
+        .profile-pic {
+            width: 120px; /* Size of the profile picture */
+            height: 120px;
+            border-radius: 50%; /* Make it perfectly round */
+            object-fit: cover; /* Ensure image covers the area without distortion */
+            border: 4px solid #000000; /* Black border */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+            margin: 0 1rem; /* Horizontal margin to separate from hearts */
+        }
+
+        /* Styles for the K-Heart icon */
+        .k-heart-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .k-heart-svg {
+            width: 80px; /* Heart size */
+            height: 80px; /* Heart size */
+            position: relative; /* For precise K positioning */
+        }
+
+        .k-letter {
+            font-family: 'Inter', sans-serif; /* Consistent font */
+            font-size: 1.2rem; /* Made the K letter smaller */
+            font-weight: bold;
+            fill: #000000; /* K letter color to black */
+            text-anchor: middle; /* Center the text horizontally */
+            dominant-baseline: central; /* Center the text vertically */
+        }
+
+        /* New style for the flipped K */
+        .k-letter-flipped {
+            transform: scaleX(-1); /* Flip horizontally */
+            transform-origin: center; /* Ensure it flips from its center */
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center; /* Align items vertically in the middle */
+            justify-content: center; /* Center the entire group horizontally */
+            margin-bottom: 1.5rem; /* Space below the entire section */
+        }
+
+        /* Input placeholder color - requires a pseudo-element */
+        input::placeholder {
+            color: #047857; /* Dark green for placeholder */
+            opacity: 0.7; /* Make it slightly transparent for better visibility */
+        }
+    </style>
+    <!-- Font Awesome for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="selection:bg-blue-300 selection:text-blue-900">
+    <div class="container rounded-3xl p-8 shadow-lg max-w-xl w-full">
+        <div class="profile-section">
+            <!-- First Green heart with letter K (normal) -->
+            <div class="k-heart-container">
+                <svg class="k-heart-svg" viewBox="0 0 24 24">
+                    <path
+                        fill="#047857" /* Darker green */
+                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                    />
+                    <text x="50%" y="50%" class="k-letter">K</text>
+                </svg>
+            </div>
+
+            <!-- Profile Picture -->
+            <img
+                id="profile-picture"
+                src="https://cdn.discordapp.com/attachments/1369743135059611759/1387430723530657932/86bc1c1a87933bcbf0d3e6eb37cf2933.jpg?ex=685d510d&is=685bff8d&hm=d8955a48afa25137317686d6261d09442e286c1635cd2893b6de7e1cc1ea4ca2&"
+                alt="Profile Picture"
+                class="profile-pic" /* Removed mx-auto, handled by flex container */
+                onerror="this.onerror=null; this.src='https://placehold.co/120x120/555/FFF?text=Error';" /* Fallback if image fails to load */
+            >
+
+            <!-- Second Green heart with letter K (flipped) -->
+            <div class="k-heart-container">
+                <svg class="k-heart-svg" viewBox="0 0 24 24">
+                    <path
+                        fill="#047857" /* Darker green */
+                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                    />
+                    <!-- Added k-letter-flipped class to this specific text element -->
+                    <text x="50%" y="50%" class="k-letter k-letter-flipped">K</text>
+                </svg>
+            </div>
+        </div>
+
+        <h1 class="text-4xl font-bold mb-4 tracking-wide">妻はカエデです</h1>
+        <p id="welcome-message" class="text-lg mb-8">
+            Welcome — I'm Ema <br><br>I'm a passionate individual, happily married and inspired by meaningful connections and simple joys.<br><br>This space is a reflection of who I am and what I love. Feel free to look around—and if you'd like to stay connected, my social media links are just below.
+        </p>
+
+        <div class="mb-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <input
+                type="text"
+                id="message-tone"
+                placeholder="e.g., 'professional', 'quirky', 'friendly'"
+                class="w-full sm:w-2/3 p-3 rounded-xl border border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button id="generate-message-btn" class="llm-button w-full sm:w-1/3">
+                <span id="button-text">Generate Welcome Message ✨</span>
+                <div id="loading-spinner" class="loading-spinner hidden"></div>
+            </button>
+        </div>
+
+        <div class="flex justify-center flex-wrap">
+            <!-- Instagram Link -->
+            <a href="https://www.instagram.com/soliddema?igsh=MWZyNGg5djM0bDMxeQ==" target="_blank" class="social-link">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <!-- TikTok Link (replaces Twitter) -->
+            <a href="https://www.tiktok.com/@soliddema?_t=ZN-8xVAru5dszW&_r=1" target="_blank" class="social-link">
+                <i class="fab fa-tiktok"></i>
+            </a>
+            <!-- Telegram Link (replaces LinkedIn) -->
+            <a href="https://t.me/solidema" target="_blank" class="social-link">
+                <i class="fab fa-telegram-plane"></i>
+            </a>
+            <!-- GitHub Link -->
+            <a href="https://github.com/solidema" target="_blank" class="social-link">
+                <i class="fab fa-github"></i>
+            </a>
+            <!-- Roblox Link (replaces YouTube) -->
+            <a href="https://www.roblox.com/users/3783160493/profile" target="_blank" class="social-link">
+                <i class="fab fa-roblox"></i>
+            </a>
+            <!-- Add more social media links as needed -->
+        </div>
+        <p class="mt-8 text-sm">
+            © 2025 Your Name. All rights reserved.
+        </p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const generateBtn = document.getElementById('generate-message-btn');
+            const messageToneInput = document.getElementById('message-tone');
+            const welcomeMessageP = document.getElementById('welcome-message');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const buttonText = document.getElementById('button-text');
+
+            generateBtn.addEventListener('click', async () => {
+                const tone = messageToneInput.value.trim();
+                // The default message is now your custom text, so the LLM will generate new content based on this base.
+                let prompt = `Generate a welcome message for a personal webpage. The page introduces "Ema" who is passionate, happily married, and inspired by meaningful connections and simple joys. The message should be a reflection of her personality and invite visitors to explore social media. Keep it concise, friendly, and inviting.`;
+
+                if (tone) {
+                    prompt += ` The tone should be '${tone}'.`;
+                } else {
+                    prompt += ` Use a default friendly and engaging tone.`;
+                }
+                prompt += ` Max 4 sentences.`; // Adjust sentence limit if needed
+
+                // Show loading spinner and disable button
+                loadingSpinner.classList.remove('hidden');
+                buttonText.classList.add('hidden');
+                generateBtn.disabled = true;
+
+                try {
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // Canvas will automatically provide the API key here
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(`API error: ${response.status} - ${errorData.error.message || 'Unknown error'}`);
+                    }
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const generatedText = result.candidates[0].content.parts[0].text;
+                        welcomeMessageP.innerHTML = generatedText.replace(/\n/g, '<br>'); // Use innerHTML to allow <br> tags from LLM
+                    } else {
+                        // Fallback to your custom default text if LLM generation fails
+                        welcomeMessageP.innerHTML = "Welcome — I'm Ema <br><br>I'm a passionate individual, happily married and inspired by meaningful connections and simple joys.<br><br>This space is a reflection of who I am and what I love. Feel free to look around—and if you'd like to stay connected, my social media links are just below.";
+                        console.error("Gemini API response structure unexpected:", result);
+                    }
+                } catch (error) {
+                    console.error("Error generating message:", error);
+                    // Fallback to your custom default text if an error occurs
+                    welcomeMessageP.innerHTML = `Failed to generate message: ${error.message || 'Please check your network and try again.'} <br><br>Welcome — I'm Ema <br><br>I'm a passionate individual, happily married and inspired by meaningful connections and simple joys.<br><br>This space is a reflection of who I am and what I love. Feel free to look around—and if you'd like to stay connected, my social media links are just below.`;
+                } finally {
+                    // Hide loading spinner and enable button
+                    loadingSpinner.classList.add('hidden');
+                    buttonText.classList.remove('hidden');
+                    generateBtn.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
